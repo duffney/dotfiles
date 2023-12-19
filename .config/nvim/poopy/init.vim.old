@@ -1,5 +1,6 @@
 set nocompatible
 filetype off
+colorscheme slate
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -8,7 +9,9 @@ call vundle#end()
 
 let mapleader = "\<Space>"
 set number
-colorscheme slate
+augroup toggle_relative_number
+autocmd InsertEnter * :setlocal norelativenumber
+autocmd InsertLeave * :setlocal relativenumber
 
 "nnoremap <C-K> :bprev<CR>
 nnoremap <leader>p :bprev<CR>
@@ -33,10 +36,6 @@ vmap <Leader>y "+y
 
 nnoremap n nzz
 nnoremap N nzz
-
-augroup toggle_relative_number
-autocmd InsertEnter * :setlocal norelativenumber
-autocmd InsertLeave * :setlocal relativenumber
 
 " Switch between windows using leader key + direction keys
 "nnoremap <leader>h <C-w>h
@@ -68,7 +67,3 @@ else
   map <C-k> <C-w>k
   map <C-l> <C-w>l
 endif
-
-
-nnoremap <C-h> <C-w>W
-nnoremap <C-l> <C-w>w

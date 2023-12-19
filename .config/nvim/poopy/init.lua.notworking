@@ -1,0 +1,81 @@
+vim.g.mapleader = " "
+
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
+
+--require("lazy").setup("plugins")
+require("lazy").setup({
+	{"christoomey/vim-tmux-navigator"},
+	{"EdenEast/nightfox.nvim"},
+	{'williamboman/mason.nvim'},
+	{'williamboman/mason-lspconfig.nvim'},
+	{
+		'VonHeikemen/lsp-zero.nvim',
+		branch = 'v3.x',
+		lazy = true,
+		config = false,
+	},
+	-- LSP Support
+	{
+		'neovim/nvim-lspconfig',
+		dependencies = {
+			{'hrsh7th/cmp-nvim-lsp'},
+		}
+	},
+	-- Autocompletion
+	{
+		'hrsh7th/nvim-cmp',
+		dependencies = {
+			{
+				'L3MON4D3/LuaSnip',
+				version = "v2.*",
+				build = "make install_jsregexp",
+			}
+		},
+	},
+})
+
+local lsp_zero = require('lsp-zero')
+
+lsp_zero.on_attach(function(client, bufnr)
+  -- see :help lsp-zero-keybindings
+  -- to learn the available actions
+  lsp_zero.default_keymaps({buffer = bufnr})
+end)
+
+-- see :help lsp-zero-guide:integrate-with-mason-nvim
+-- to learn how to use mason.nvim with lsp-zero
+require('mason').setup({})
+require('mason-lspconfig').setup({
+  handlers = {
+    lsp_zero.default_setup,
+  }
+})
+
+vim.cmd("colorscheme carbonfox")
+vim.g.netrw_winsize = 15
+vim.api.nvim_set_keymap('n', '<leader>e', ':Lexplore<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>p', ':bpre<CR>', { noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>n', ':bnext<CR>', { noremap = true, silent = true})
+
+
+vim.wo.cursorline = true
+vim.opt.number = true
+
+vim.cmd[[
+  augroup toggle_relative_number
+    autocmd!
+    autocmd InsertEnter * :setlocal norelativenumber
+    autocmd InsertLeave * :setlocal relativenumber
+  augroup END
+]]

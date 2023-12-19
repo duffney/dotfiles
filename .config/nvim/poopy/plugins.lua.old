@@ -1,0 +1,11 @@
+return {
+    "christoomey/vim-tmux-navigator",
+    "EdenEast/nightfox.nvim",
+    "williamboman/mason.nvim",
+    opts = {
+	    ensure_installed = {
+		    "gopls",
+	    },
+    },
+    "neovim/nvim-lspconfig",
+}
