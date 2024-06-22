@@ -8,7 +8,7 @@ call vundle#end()
 
 let mapleader = "\<Space>"
 set number
-colorscheme slate
+colorscheme slate 
 
 "nnoremap <C-K> :bprev<CR>
 nnoremap <leader>p :bprev<CR>
@@ -72,3 +72,5 @@ endif
 
 nnoremap <C-h> <C-w>W
 nnoremap <C-l> <C-w>w
+
+set noswapfile

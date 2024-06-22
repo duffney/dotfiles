@@ -13,7 +13,8 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
     {"christoomey/vim-tmux-navigator"},
-    {"EdenEast/nightfox.nvim"},
+    --{"EdenEast/nightfox.nvim"},
+	{ "catppuccin/nvim", name = "catppuccin", priority = 1000 },
     {'williamboman/mason.nvim'},
 	{'williamboman/mason-lspconfig.nvim'},
 	{
@@ -51,5 +52,9 @@ require("lazy").setup({
 		dependencies = {
 			{"nvim-tree/nvim-web-devicons"},
 		},
+	},
+	{
+		'nvim-telescope/telescope.nvim', tag = '0.1.6',
+		dependencies = { 'nvim-lua/plenary.nvim' }
 	},
 })

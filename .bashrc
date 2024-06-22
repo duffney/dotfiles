@@ -1,3 +1,5 @@
+#eval "$(oh-my-posh --init --shell bash --config ~/.poshthemes/gruvbox.omp.json)"
+eval "$(oh-my-posh --init --shell bash --config ~/.poshthemes/catppuccin_macchiato.omp.json)"
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -123,3 +125,5 @@ if [ -z "$TMUX" ]; then
   # If not, start a new tmux session
   tmux attach -t default || tmux new -s default
 fi
+
+alias k='kubectl'

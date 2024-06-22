@@ -14,3 +14,5 @@ vim.api.nvim_set_keymap('n', 'N', 'Nzz', { noremap = true, silent = true })
 
 vim.api.nvim_set_keymap('n', '<C-h>', '<C-w>W', { noremap = true})
 vim.api.nvim_set_keymap('n', '<C-l>', '<C-w>w', { noremap = true})
+
+vim.api.nvim_set_keymap('n', '<leader>fj', ':%!jq .<CR>', { noremap = true })
